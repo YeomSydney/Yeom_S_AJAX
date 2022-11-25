@@ -3,44 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mail Ref</title>
+    <title>Mailer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <main>
-        <h1 class="hidden">Mail Reference for API Processing</h1>
-        <h2>Some Generic Contact Message Here</h2>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis quae aliquid eaque numquam facere ratione molestiae temporibus quibusdam, dolor voluptatibus cupiditate sed error expedita assumenda. Vitae nulla recusandae minima inventore?
-        </p>
+    <main class="container">
+        <h1 class="hidden">Mailer Assignment - Justin & Trevor</h1>
 
-        <hr class="separator">
+        <div class="mail_content">
+            <h2 class="hidden">Sending Form</h2>
 
-        <h2 class="mail-header">Processing Mail with AJAX</h2>
+            <form action="./includes/mail/send.php" method="POST" id="mail-form" class="mailer_form" autocomplete="off">
+                <div class="mailerBox">
+                    <div>
+                        <h1 class="mail_title"><span>Welcome!</span></h1>
+                        <p class="mail_desc">Welcome! Please Fill Up The Boxes.</p>
+                    </div>
 
-        <form action="includes/mail/send.php" method="POST" id="mail-form">
-            <label for="firstname">First Name</label>
-            <input ref="fname" type="text" id="firstname" name="firstname" required="required">
+                    <div class="errors_success">
+                        <div>
+                            <p class="sendForm sendFrom_error" ref="errorEmpty"></p>
+                        </div>
+    
+                        <div>
+                            <p class="sendForm sendFrom_success" ref="successBox"></p>
+                        </div>
+                    </div>
+                </div>
 
-            <label for="lastname">Last Name</label>
-            <input ref="lname" type="text" id="lastname" name="lastname" required>
+                <div>
+                    <div class="mail_inputs">
+                        <div>
+                            <label class="mail-form-label" for="firstname">First Name *</label>
+                            <input ref="firstname" type="text" id="firstname" class="mail_input" name="firstname" required="required" placeholder="Enter Your Firstname.">
+                        </div>
+    
+                        <div>
+                            <label class="mail-form-label" for="lastname">Last Name *</label>
+                            <input ref="lastname" type="text" id="lastname" class="mail_input" name="lastname" required="required" placeholder="Enter Your Lastname.">
+                        </div>
+    
+                        <div>
+                            <label class="mail-form-label" for="email">Email *</label>
+                            <input ref="email" type="email" id="email" class="mail_input" name="email" required="required" placeholder="Enter Your Email Address.">
+                        </div>
 
-            <label for="firstname">Email</label>
-            <input ref="email" type="email" id="email" name="email" required>
+                        <div>
+                            <label class="mail-form-label" for="phone">Your Phone Number <span>(optional)</span></label>
+                            <input ref="phone" type="tel" name="phone" id="phone" class="mail_input" placeholder="Enter Your Phone Number. Please Include Country Code.">
+                        </div>
+    
+                        <div>
+                            <label class="mail-form-label" for="message">Your Message *</label>
+                            <textarea ref="message" name="message" id="message" class="mail_input" cols="30" rows="10" placeholder="Enter Your Message."></textarea>
+                            <!-- <span>Message can't be blank.</span> -->
+                        </div>
+    
+                        <div class="wrapper">
+                            <input @click.prevent="processMail" type="submit" class="submitBtn" value="Submit" ref="submit">
+                            <!-- <i class="fas fa-paper-plane"></i> -->
+                            <!-- <p class="error send_error"></p> -->
+                        </div>
+                    </div>
+                </div>                        
+            </form>
 
-            <label for="message">Your Message</label>
-            <textarea ref="message" name="message" id="message" cols="30" rows="10"></textarea>
-
-            <label for="phone">Your Phone # <i>(optional)</i></label>
-            <input ref="phone" type="tel" value="tel" name="phone">
-            
-            <div class="wrapper">
-                <input @click.prevent="processMail" type="submit" class="submit" value="Go!">
-                <i class="fas fa-paper-plane"></i>
-            </div>                              
-        </form>
+        </div>
     </main>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>

@@ -1,45 +1,173 @@
-label { 
-    display: block;
-    margin: 1.5em 0 0.3em;
+.mail_content,
+.mailer_form,
+.mail_inputs {
+    display: grid;
+}
 
-    padding-left: 0.4em;
+.mail_content {
+    position: relative;
+    height: auto;
+    align-items: center;
+}
+
+.mail_image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mailerBox {
+    margin: 3rem auto;
+    text-align: center;
+}
+
+.mailer_form {
+    position: relative;
+    background: hsla(244, 16%, 92%, .6);
+    border: 2px solid hsla(244, 16%, 92%, .75);
+    margin-inline: 1.5rem;
+    row-gap: 1.25rem;
+
+    backdrop-filter: blur(20px);
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.mail_title {
+    color: $title-color;
+    font-size: $h2-font-size;
+    margin-bottom: .3rem;
+}
+
+.mail_title span {
+    color: $first-color;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mail_desc {
+    font-size: $small-font-size;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.mail_inputs {
+    row-gap: .25rem;
+}
+
+.mail-form-label {
+    display: block;
+    color: $title-color;
+    font-size: $small-font-size;
+    font-weight: $font-semi-bold;
+}
+
+.mail_input {
+    width: 100%;
+    padding: 14px 12px;
+    border-radius: 6px;
+    border: 1px solid $text-color;
+
+    background-color: hsla(244, 16%, 92%, .6);
+    color: $title-color;
+
+    font-size: $smaller-font-size;
+    font-weight: $font-medium;
+    transition: border .4s;
+    margin: 0 auto;
+}
+
+.message_input {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid $text-color;
+
+    background-color: hsla(244, 16%, 92%, .6);
+    color: $title-color;
+
+    font-size: $smaller-font-size;
+    font-weight: $font-medium;
+    transition: border .4s;
+    margin: 0 auto;
+}
+
+.mail_input::placeholder {
+    color: $text-color;
+}
+
+.mail_input:focus,
+.mail_input:valid
+{
+    border: 1px solid $first-color;
+}
+
+.mail-form-label { 
+    display: block;
+    margin: .5em 0 0.3em 0;
+    // padding-bottom: .2rem;
+    // padding-left: 0.4em;
 
     &:first-of-type {
         margin-top: 0;
     }
 }
 
-input[type=text], input[type=email], input[type=tel], textarea {
-    padding: 0.6em;
-    color: #333;
-    border-radius: 4px;
-    width: 250px;
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    display: block;
+    padding: 1.2em;
+    border-radius: 10rem;
+
+    max-width: 500px;
+    width: 100%;
+
+    margin-bottom: 1.2rem;
 }
 
-input[type=submit] {
+textarea {
+    resize: none;
+}
+
+input[type="submit"] {
     display: block;
-    margin-top: 2em;
-    padding: 0.75rem 3.3rem 0.75rem 0.75rem;
-    border-radius: 0.5rem;
+    margin: 2em 0 0 0;
+    padding: .75rem 1.25rem;
+
+    border-radius: 10rem;
     background-color: #78abeb;
+
     cursor: pointer;
-    font-size: 1.2em;
+    font-size: $small-font-size;
     color: white;
-    font-weight: bolder;
+    text-align: center;
 
     &:hover { background-color: #5588c8}
 }
 
 .wrapper {
-    position: relative;
-
-    i { 
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 60px;
-        font-size: 1.5em;
-    }
+    margin: 0 auto;
 }
 
-textarea { resize: none; display: block; }
+.error {
+    color: #af4242;
+    background-color: #fde8ec;
+    border: solid 1.5px #d13939;
+    
+    display: none;
+}
+
+.sendForm.sendForm_error {
+    display: none;
+}
+
+.sendForm.sendForm_success {
+    display: none;
+}
+
+.textarea {
+    display: block;
+}

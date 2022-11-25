@@ -1,40 +1,39 @@
 <?php
 // Required Headers
 header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8"); // This is how I'll treat the file
+header("Content-Type: application/json; charset=UTF-8");
 
 if($_POST) {
-    // if it's true, the result is 1. - Refer to Boolean
-    $receipent = "This Is Where Your Email Goes...";
-    $subject = "Email From My Portfolio Site"; // This is the subject I'd get.
+    $receipient = "yeomhyeon@yeomhyeon.com";
+    $subject = "Email from my portfolio website! Please send a reply as soon as possible.";
     $visitor_name = "";
     $visitor_email = "";
     $message = "";
-    $fail = array(); // I would get what is missed.
+
+    $fail = array();
 
     // Cleans and stores first name in the #$visitor_name variable.
-    if(isset($_POST['firstname']) && !empty('firstname')) {
-        // !empty - it cannot be empty.
-        $visitor_name = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
-    }else {
+    if(isset($_POST['firstname']) && !empty($_POST['firstname'])) {
+        $visitor_name .= filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
+    }else{
         array_push($fail, "firstname");
     }
 
     // Cleans and appends last name in the #$visitor_name variable.
-    if(isset($_POST['lastname']) && !empty('lastname')) {
-        $visitor_name .= " ".filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
-    }else {
+    if(isset ($_POST['lastname']) && !empty($_POST['lastname'])) {
+        $visitor_name .=" ".filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
+    }else{
         array_push($fail, "lastname");
     }
 
     // Cleans and stores email in the #$visitor_name variable.
     if(isset($_POST['email']) && !empty($_POST['email'])) {
-        $email = str_replace(arrary("\r", "\n", "%0a", "%0d"), "",
-        $_POST['email']);
-        $visitor_email = filter_var($email, FILTER_SANITIZE_STRING);
+        $visitor_email .= str_replace(array("\r", "\n", "%0p", "%0a", "%0d"), "", $_POST['email']);
+        $visitor_email .= filter_var($visitor_email, FILTER_VALIDATE_EMAIL);
         //  \r = return
         //  \n = end
         //  "\r\n" = line break
+
     }else {
         array_push($fail, "email");
     }
@@ -47,23 +46,24 @@ if($_POST) {
         array_push($fail, "message");
     }
 
-    $headers = "FROM: i_am_awesome@awesome.com"."\r\n"."Reply-to: again@again.com"."\r\n"."X-mailer: PHP/".phpversion();
+    $headers = "FROM: ".$visitor_name."\r\n"."Reply To: ".$visitor_name."(".$visitor_email.")"."\r\n"."X-mailer: PHP/".phpversion();
 
-    if(count($fail==0)) {
-        mail($receipent, $subject, $message, $headers);
-        $results['message'] = sprintf("Thank you for contacting us, %s. We will respond within 24hours.", $visitor_name);
-        // %s will be the customer's name.
+    if(count($fail) == 0) {
+        $subject = $subject."FROM ".$visitor_name;
+        mail($receipient, $subject, $message, $headers);
+        // $headers - debugger
+        $results['message'] = sprintf("Thank you for contacting us".$visitor_name.". We will respond within 24hours.");
+
     }else {
-        header("HTTP/1.1 488 YOU DID NOT fill out the form correctly.");
+        header('HTTP/1.1 488 YOU DID NOT fill out the form correctly.');
         // 488 - random number, indicates it's an error
-        die(json_encode(['message' => $fail]));
+        die(json_encode(["blanks" => $fail,
+                        "message" => "Please make sure to fill up all the blanks! Thank you."]));
         // After die(), nothing is showing.
     }
 
-
 }else {
-    // if it's false, the result is 0. - Refer to Boolean
-    $results['message'] = "Stop being so lazy and fill out the form.";
+    $results['message'] = "Please make sure to fill up all the blanks! Thank you.";
 }
 
 echo json_encode($results);

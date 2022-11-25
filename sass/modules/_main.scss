@@ -1,24 +1,28 @@
 body {
-    background-color: $main-bg-color;
-    color: $main-color;
-
+    background-color: $body-color;
+    color: $text-color;
     font-size: $main-font-size;
     font-family: $main-font-face;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
 }
 
 main {
-    padding: 20px;
+    padding: 20px auto;
+    margin: 1rem auto;
 
     h2 { 
         text-transform: uppercase;
-        color: $heading-color;
+        color: white;
         font-size: 1.5em;
         margin-bottom: 0.8em;
     }
 
-    hr { 
+    hr {
+        display: none; 
         width: 80%; 
-        border: 1px solid $heading-color; 
+        border: 1px solid white; 
         margin: 40px 0; 
     }
 
