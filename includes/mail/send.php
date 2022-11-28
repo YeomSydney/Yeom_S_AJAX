@@ -45,7 +45,7 @@ if($_POST) {
     }
 
     // $headers = "From: contact@yeomhyeon.com"."\r\n"."Reply-to: ".$visitor_email."\r\n"."X-MAIL: PHP/".phpversion();
-    $headers = "From: "."\r\n"."Reply-to: ".$visitor_email."\r\n"."X-mailer: PHP/".phpversion();
+    $headers = "FROM: ".$visitor_name."\r\n"."Reply-to: ".$visitor_email."\r\n"."X-mailer: PHP/".phpversion();
     // $headers = "FROM: "."\r\n"."Reply-to: ".$visitor_email."\r\n"."X-mailer: PHP/".phpversion();
 
     // "X-mailer: PHP/".phpversion();
