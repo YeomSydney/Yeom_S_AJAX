@@ -11,7 +11,7 @@
 }
 
 .mailerBox {
-    margin: 3rem auto;
+    // margin: 3rem auto;
     text-align: center;
 }
 
@@ -148,20 +148,28 @@ input[type="submit"] {
     margin: 0 auto;
 }
 
-.error {
+.errors_success {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+}
+
+.error {    
+    display: none;
     color: #af4242;
-    background-color: #fde8ec;
-    border: solid 1.5px #d13939;
-    
-    display: none;
 }
 
-.sendForm.sendForm_error {
+.sendForm_error {
     display: none;
+    color: #af4242;
+    // border: solid 1.5px #d13939;
 }
 
-.sendForm.sendForm_success {
+.sendForm_success {
     display: none;
+    color: #3ec847;
+    // border: solid 1.5px #d13939;
 }
 
 .textarea {

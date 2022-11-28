@@ -14,7 +14,7 @@
         <div class="mail_content">
             <h2 class="hidden">Sending Form</h2>
 
-            <form action="Week10/includes/mail/send.php" method="POST" id="mail-form" class="mailer_form" autocomplete="off">
+            <form action="includes/mail/send.php" method="POST" id="mail-form" class="mailer_form" autocomplete="off">
                 <div class="mailerBox">
                     <div>
                         <h1 class="mail_title"><span>Welcome!</span></h1>
@@ -23,11 +23,11 @@
 
                     <div class="errors_success">
                         <div>
-                            <p class="sendForm sendFrom_error" ref="errorEmpty"></p>
+                            <p class="sendForm sendForm_error" ref="errorEmpty"></p>
                         </div>
     
                         <div>
-                            <p class="sendForm sendFrom_success" ref="successBox"></p>
+                            <p class="sendForm sendForm_success" ref="successBox"></p>
                         </div>
                     </div>
                 </div>
@@ -73,6 +73,7 @@
     </main>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="contactMeForm/js/main.js" type="module" defer></script> -->
     <script src="js/main.js" type="module" defer></script>
 </body>
 </html>

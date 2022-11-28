@@ -18,17 +18,25 @@ import { SendMail } from "./components/mailer.js";
                 // show some errors in the UI here to let the user know the mail attempt was successful
                 // DO NOT USE THIS ALERT METHOD. or it's a big fat 0
 
-                result = JSON.parse(result.message);
+                let result = JSON.parse(result.message).message;
+                // let field = JSON.parse(result.message).message;
 
+                let error = document.querySelector('.sendForm_error');
+                error.classList.add('.error');
+
+                result.forEach(element);
                 this.$refs["errorEmpty"].innerHTML = result.message;
                 this.$refs["errorEmpty"].style.display = 'block';
                 this.$refs["successBox"].style.display = 'none';
                 
-                if(result.blanks) {
-                    result.blanks.forEach(element => {
-                        this.$refs[element].classList.add("error");
-                    });
+                function element() {
+                    this.$refs.classList.add("error");
                 }
+                // if(result.field) {
+                //     result.field.forEach(element => {
+                //         this.$refs.classList.add("error");
+                //     });
+                // }
             },
 
             processMailSuccess(result) {
@@ -43,21 +51,11 @@ import { SendMail } from "./components/mailer.js";
                 this.$refs["errorEmpty"].style.display = 'none';
 
                 this.$refs["submit"].disabled = true;
-                document.querySelector(".submitBtn").value = "Thank You!";
+                // document.querySelector(".submitBtn").value = "Thank You!";
                 // document.querySelector('input').style.color = 'blue';
             },
 
-            resetBlanks() {
-                this.$refs["firstname"].classList.remove("error");
-                this.$refs["lastname"].classList.remove("error");
-                this.$refs["email"].classList.remove("error");
-                this.$refs["phone"].classList.remove("error");
-                this.$refs["message"].classList.remove("error");
-            },
-
-            processMail(event) {      
-                this.resetBlanks();
-
+            processMail(event) {
                 // use the SendMail component to process mail
                 SendMail(this.$el.parentNode)
                     .then(data => this.processMailSuccess(data))
